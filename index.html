@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Developer Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="#" class="text-white text-2xl font-bold">GameDev Portfolio</a>
+            <ul class="flex space-x-4">
+                <li><a href="#projects" class="text-white hover:text-gray-300">Projects</a></li>
+                <li><a href="#about" class="text-white hover:text-gray-300">About</a></li>
+                <li><a href="#contact" class="text-white hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-900 text-white py-20 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Welcome to My Portfolio</h1>
+            <p class="text-lg sm:text-xl md:text-2xl">I'm a game developer using Unity. Check out my projects below!</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">Projects</h2>
+            <!-- Project Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Project Card Example -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x200" alt="Project 1" class="w-full">
+                    <div class="p-4">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Project 1</h3>
+                        <p class="text-gray-700">Description of project 1.</p>
+                    </div>
+                </div>
+                <!-- Add more project cards here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">About Me</h2>
+            <p class="text-lg sm:text-xl md:text-2xl">Brief description about yourself and your experience as a game developer.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">Contact Me</h2>
+            <p class="text-lg sm:text-xl md:text-2xl">Feel free to reach out to me through the following channels:</p>
+            
+            <!-- Contact Icons -->
+            <div class="flex items-center space-x-8 mt-8">
+                <!-- Gmail -->
+                <a href="mailto:mohanapriyan2002@gmail.com" class="text-gray-800 hover:text-gray-600 text-4xl sm:text-5xl md:text-6xl">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/9092346445" class="text-green-600 hover:text-green-500 text-4xl sm:text-5xl md:text-6xl">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/iam_mohan_21" class="text-pink-600 hover:text-pink-500 text-4xl sm:text-5xl md:text-6xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold mb-4">Send me a message:</h3>
+                <form action="send-email.php" method="POST" class="max-w-lg">
+                    <div class="mb-4">
+                        <label for="name" class="block text-lg font-semibold">Your Name:</label>
+                        <input type="text" id="name" name="name" class="w-full border rounded-md py-2 px-3" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-lg font-semibold">Your Email:</label>
+                        <input type="email" id="email" name="email" class="w-full border rounded-md py-2 px-3" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-lg font-semibold">Message:</label>
+                        <textarea id="message" name="message" rows="4" class="w-full border rounded-md py-2 px-3" required></textarea>
+                    </div>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-4 text-white text-center">
+        <div class="container mx-auto">
+            &copy; 2024 GameDev Portfolio
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script>
+        // You can add JavaScript code here if needed
+    </script>
+</body>
+
+</html>
