@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Developer Portfolio</title>
+    <title>MOHAN Game Dev Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -13,6 +13,36 @@
             transform: scale(1.05);
             transition: transform 0.3s ease;
         }
+
+        /* CSS for the zoom effect */
+        .zoom-img {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .zoom-img:hover {
+            transform: scale(1.05);
+        }
+
+        .zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
     </style>
 </head>
 
@@ -20,7 +50,7 @@
     <!-- Navigation -->
     <nav class="bg-gray-800 py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <a href="#" class="text-white text-2xl font-bold">GameDev Portfolio</a>
+            <a href="#" class="text-white text-2xl font-bold">Mohan Portfolio</a>
             <ul class="flex space-x-4">
                 <li><a href="#projects" class="text-white hover:text-gray-300">Projects</a></li>
                 <li><a href="#about" class="text-white hover:text-gray-300">About</a></li>
@@ -32,8 +62,9 @@
     <!-- Hero Section -->
     <section class="bg-gray-900 text-white py-20 px-4">
         <div class="container mx-auto text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Welcome to My Portfolio</h1>
-            <p class="text-lg sm:text-xl md:text-2xl">I'm a game developer using Unity. Check out my projects below!</p>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Hello there! </h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-6">I'm <strong>MOHAN</strong>,an aspiring game developer and designer specializing in Unity and Blender.</p>
+            <p class="text-lg sm:text-xl md:text-2xl">Explore My Projects below!</p> 
         </div>
     </section>
 
@@ -45,58 +76,120 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 <!-- Project Card Example -->
                 <a href="project1.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="MINATO WALL.jpg" alt="Project 1" class="w-full">
+                    <img src="photos/yellow flash/y flash icon.jpg" alt="Project 1" class="w-full">
                     <div class="p-4">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Project 1</h3>
-                        <p class="text-gray-700">Description of project 1.</p>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Yellow Flash</h3>
+                        <p class="text-gray-700">2d Game for Android</p>
                     </div>
                 </a>
                 <!-- Add more project cards here -->
                 
                 <!-- Project Card 2 -->
                 <a href="project2.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="MINATO WALL.jpg" alt="Project 2" class="w-full">
+                    <img src="photos/AR/Ar Drawing 2.jpg" alt="Project 2" class="w-full">
                     <div class="p-4">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Project 2</h3>
-                        <p class="text-gray-700">Description of project 2.</p>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Fruit Shoot</h3>
+                        <p class="text-gray-700">AR Game for Android.</p>
+                    </div>
+                </a>
+
+                <!-- Project Card 3 -->
+                <a href="project3.html" class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="photos/3d game/gm 3d (1).jpg" alt="Project 2" class="w-full">
+                    <div class="p-4">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Invisible</h3>
+                        <p class="text-gray-700">3d Game for Windows</p>
+                    </div>
+                </a>
+
+                <!-- Project Card 4 -->
+                <a href="project4.html" class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="photos/Superman/SUP GM icon.jpg" alt="Project 2" class="w-full">
+                    <div class="p-4">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2"><strong>*In development</strong></h3>
+                        <p class="text-gray-700">3D(Superman) Game for Windows</p>
                     </div>
                 </a>
 
                 
 
-                
-                
+                <!-- Project Card 1 with Video -->
+                <!--<a href="project4.html" class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="aspect-w-16 aspect-h-9">
+                        
+                        <iframe src="photos/AR/vdo AR.mp4" frameborder="0" allowfullscreen class="w-full h-full"></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Fruit Shoot</h3>
+                        <p class="text-gray-700">AR Game</p>
+                    </div>
+                </a> -->
+
             </div>
         </div>
     </section>
 
-<!-- Projects Section -->
-<section id="projects" class="py-16 px-4">
+
+    <!-- Projects Section -->
+<section id="3D Models" class="py-16 px-4">
     <div class="container mx-auto">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">Projects</h2>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">3D Models</h2>
         <!-- Project Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Project Card 1 -->
+            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/house.jpg" data-lightbox="project">
+                <img src="photos/BLENDER/house.jpg" alt="Project 1" class="w-full zoom-img">
+                
+            </a>
+            
+            <!-- Project Card 2 -->
+            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/tea kadai.png" data-lightbox="project">
+                <img src="photos/BLENDER/tea kadai.png" alt="Project 2" class="w-full zoom-img">
+                
+            </a>
 
-    <!-- Project Card 3 with Video -->
-    <a href="project4.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-        <div class="aspect-w-16 aspect-h-9">
-            <!-- Replace the src attribute with the URL of your video -->
-            <iframe src="scrnRECORD.mp4" frameborder="0" allowfullscreen class="w-full h-full"></iframe>
+            <!-- Project Card 3 -->
+            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/SUPERMAN.png" data-lightbox="project">
+                <img src="photos/BLENDER/SUPERMAN.png" alt="Project 3" class="w-full zoom-img">
+                
+            </a>
+
+            <!-- Project Card 4 -->
+            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/JACK SPARROW.png" data-lightbox="project">
+                <img src="photos/BLENDER/JACK SPARROW.png" alt="Project 4" class="w-full zoom-img">
+                
+            </a>
+
+
         </div>
-        <div class="p-4">
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Project 3</h3>
-            <p class="text-gray-700">Description of project 3.</p>
-        </div>
-    </a>
     </div>
-        </div>
-    </section>
+</section>
+<!-- Overlay for Lightbox -->
+<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 z-50 hidden flex justify-center items-center">
+    <img id="overlay-img" class="max-h-full max-w-full" src="" alt="Overlay Image">
+</div>
+
+
+
 
     <!-- About Section -->
     <section id="about" class="py-16 px-4 bg-gray-100">
         <div class="container mx-auto">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">About Me</h2>
-            <p class="text-lg sm:text-xl md:text-2xl">Brief description about yourself and your experience as a game developer.</p>
+            <div class="flex flex-col items-center">
+                <img src="photos/pic mp.jpg" alt="Your Photo" class="rounded-full w-32 h-32 md:w-48 md:h-48 zoom-img mb-4">
+
+                
+                <p class="text-lg sm:text-xl md:text-2xl mb-4">Hello! I’m <strong>Mohana Priyan . K</strong>, a passionate game developer and designer with a love for creating immersive and engaging experiences. My journey into game development began with a fascination for the intricate mechanics and storytelling found in video games, which eventually led me to pursue a career in this dynamic field.
+                </p>
+    
+                <p class="text-lg sm:text-xl md:text-2xl">My expertise lies in using Unity for game development, with proficiency in C# for scripting and Blender for 3D modeling and animation. Although I am relatively new to the industry, my dedication and continuous learning have enabled me to work on a variety of projects, each helping me to develop and refine my skills.
+                </p>
+
+
+                <!-- Download Resume Button -->
+                <a href="resume/Mohana Priyan . K.pdf" download class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Download Resume</a>
+            </div>
         </div>
     </section>
 
@@ -104,7 +197,7 @@
     <section id="contact" class="py-16 px-4">
         <div class="container mx-auto">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">Contact Me</h2>
-            <p class="text-lg sm:text-xl md:text-2xl">Feel free to reach out to me through the following channels:</p>
+            <p class="text-lg sm:text-xl md:text-2xl">I am eager to connect with fellow game developers, designers, and enthusiasts. Whether you’re interested in collaborating on a project, discussing industry trends, or simply sharing a love for games, feel free to reach out to me through the following channels:</p>
             
             <!-- Contact Icons -->
             <div class="flex items-center space-x-8 mt-8">
@@ -131,10 +224,8 @@
         </div>
     </footer>
 
-    <!-- Optional JavaScript -->
-    <script>
-        // You can add JavaScript code here if needed
-    </script>
+    <!-- Link to external JavaScript file -->
+    <script src="scripts.js"></script>
 </body>
 
 </html>
