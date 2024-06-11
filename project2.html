@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit shoot</title>
+    <!-- Link to your CSS file used in index.html -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Add your custom CSS styles here */
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 80px; /* Adjust as needed */
+        }
+        .content-container img, .content-container video {
+            width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Content for Project 1 Details -->
+    <div class="container mx-auto py-10">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Fruit Shoot</h1>
+
+        <div class="content-container">
+            <video controls>
+                <source src="photos/AR/vdo AR.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="text-lg sm:text-xl md:text-2xl">Using the XR plugin to build an AR game for mobile on the Unity engine</p>
+        </div>
+
+
+        <div class="content-container">
+            <img src="photos/AR/mm AR.jpg" alt="Image 1">
+            <p class="text-lg sm:text-xl md:text-2xl">Main Menu screen</p>
+        </div>
+
+        <div class="content-container">
+            <img src="photos/AR/lvls AR.jpg" alt="Image 2">
+            <p class="text-lg sm:text-xl md:text-2xl">Completing a level only unlocks the next level to playable</p>
+        </div>
+
+
+        <div class="content-container">
+            <video controls>
+                <source src="photos/AR/AR Gp.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="text-lg sm:text-xl md:text-2xl">Game Play</p>
+        </div>
+
+        <div class="content-container">
+            <img src="photos/AR/ps AR.jpg" alt="Image 3">
+            <p class="text-lg sm:text-xl md:text-2xl">Pause menu screen using with LeanTween for dynamic UI effects</p>
+        </div>
+
+        <div class="content-container">
+            <img src="photos/AR/GM OVER AR.jpeg" alt="Image 4">
+            <p class="text-lg sm:text-xl md:text-2xl">Game over screen. </p>
+            <p class="text-lg sm:text-xl md:text-2xl">The game is over when you run out of bullets to shoot the fruit </p>
+        </div>
+
+        <div class="content-container">
+            <img src="photos/AR/lvl AR.jpg" alt="Image 5">
+            <p class="text-lg sm:text-xl md:text-2xl">360° fruit placements for an immersive experience.</p>
+        </div>
+
+        
+        
+        <!-- <div class="content-container">
+            <video controls>
+                <source src="scrnRECORD.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="text-lg sm:text-xl md:text-2xl">Text below Video 1</p>
+        </div> -->
+        
+        <!-- Add more content containers for additional images and videos -->
+    </div>
+</body>
+</html>
