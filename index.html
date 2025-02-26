@@ -7,195 +7,374 @@
     <title>MOHAN Game Dev Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        /* Add this CSS to animate project cards */
-        .bg-white:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
+        /* Gradient Background Animation */
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
 
-        /* CSS for the zoom effect */
-        .zoom-img {
-            transition: transform 0.3s ease;
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+            z-index: 1000;
+        }
+
+        .custom-cursor.hover {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sticky Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Header Section */
+        .header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* 3D Project Cards */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .project-card:hover {
+            transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-card .content {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            transition: bottom 0.5s ease;
+        }
+
+        .project-card:hover .content {
+            bottom: 0;
+        }
+
+        /* Day/Night Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            z-index: 1000;
+        }
+
+        .theme-toggle i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Dark Theme Styles */
+        .dark-theme {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .dark-theme nav {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .dark-theme .bg-white {
+            background: #333333;
+            color: #ffffff;
+        }
+
+        .dark-theme .project-card {
+            background: #444444;
+            color: #ffffff;
+        }
+
+        .dark-theme .project-card .content {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* About Section Styles */
+        .animate-spin-slow {
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .bg-white.dark\:bg-gray-800 {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .bg-white.dark\:bg-gray-800:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Zoom Effect for 3D Models Section */
+        .zoom-img {
+            transition: transform 0.5s ease;
         }
 
         .zoom-img:hover {
-            transform: scale(1.05);
-        }
-
-        .zoomed {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(2);
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-            display: none;
+            transform: scale(1.1);
         }
     </style>
 </head>
 
 <body class="bg-gray-100">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Day/Night Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Navigation -->
-    <nav class="bg-gray-800 py-4">
+    <nav class="py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <a href="#" class="text-white text-2xl font-bold">Mohan Portfolio</a>
+            <a href="#" class="text-white text-2xl font-bold flex items-center">
+                <i class="fas fa-gamepad mr-2"></i>
+                Mohan Portfolio
+            </a>
             <ul class="flex space-x-4">
-                <li><a href="#projects" class="text-white hover:text-gray-300">Projects</a></li>
-                <li><a href="#about" class="text-white hover:text-gray-300">About</a></li>
-                <li><a href="#contact" class="text-white hover:text-gray-300">Contact</a></li>
+                <li><a href="#projects" class="text-white hover:text-yellow-400 transition duration-300">Projects</a>
+                </li>
+                <li><a href="#about" class="text-white hover:text-yellow-400 transition duration-300">About</a></li>
+                <li><a href="#contact" class="text-white hover:text-yellow-400 transition duration-300">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="bg-gray-900 text-white py-20 px-4">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">Hello there! </h1>
-            <p class="text-lg sm:text-xl md:text-2xl mb-6">I'm <strong>MOHAN</strong>,an aspiring game developer and designer specializing in Unity and Blender.</p>
-            <p class="text-lg sm:text-xl md:text-2xl">Explore My Projects below!</p> 
+    <!-- Header Section -->
+    <section class="header">
+        <div>
+            <h1>Hello there!</h1>
+            <p class="hero-text"></p> <!-- Add the .hero-text class here -->
+            <a href="#projects"
+                class="mt-8 inline-block bg-yellow-400 text-black py-2 px-6 rounded-full hover:bg-yellow-500 transition duration-300">
+                Explore My Projects
+            </a>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="py-16 px-4">
         <div class="container mx-auto">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">Projects</h2>
-            <!-- Project Cards -->
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">Projects</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Project Card Example -->
-                <a href="project1.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="photos/yellow flash/y flash icon.jpg" alt="Project 1" class="w-full">
-                    <div class="p-4">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Yellow Flash</h3>
-                        <p class="text-gray-700">2d Game for Android</p>
+                <!-- Project Card 1 -->
+                <a href="project1.html" class="project-card">
+                    <img src="photos/Superman/pose.jpg" alt="Project 1">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">*In development</h3>
+                        <p class="text-gray-300">3D(Superman) Game</p>
                     </div>
                 </a>
-                <!-- Add more project cards here -->
-                
+
                 <!-- Project Card 2 -->
-                <a href="project2.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="photos/AR/Ar Drawing 2.jpg" alt="Project 2" class="w-full">
-                    <div class="p-4">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Fruit Shoot</h3>
-                        <p class="text-gray-700">AR Game for Android.</p>
+                <a href="project2.html" class="project-card">
+                    <img src="photos/yellow flash/y flash icon.jpg" alt="Project 2">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Yellow Flash</h3>
+                        <p class="text-gray-300">2D Game for Android</p>
                     </div>
                 </a>
 
                 <!-- Project Card 3 -->
-                <a href="project3.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="photos/3d game/gm 3d (1).jpg" alt="Project 2" class="w-full">
-                    <div class="p-4">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Invisible</h3>
-                        <p class="text-gray-700">3d Game for Windows</p>
+                <a href="project3.html" class="project-card">
+                    <img src="photos/AR/Ar Drawing 2.jpg" alt="Project 3">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Fruit Shoot</h3>
+                        <p class="text-gray-300">AR Game for Android</p>
                     </div>
                 </a>
 
                 <!-- Project Card 4 -->
-                <a href="project4.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="photos/Superman/SUP GM icon.jpg" alt="Project 2" class="w-full">
-                    <div class="p-4">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2"><strong>*In development</strong></h3>
-                        <p class="text-gray-700">3D(Superman) Game for Windows</p>
+                <a href="project4.html" class="project-card">
+                    <img src="photos/3d game/gm 3d (1).jpg" alt="Project 4">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Invisible</h3>
+                        <p class="text-gray-300">3D Game for Windows</p>
                     </div>
                 </a>
-                
-
-                
-
-                <!-- Project Card 1 with Video -->
-                <!--<a href="project4.html" class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="aspect-w-16 aspect-h-9">
-                        
-                        <iframe src="photos/AR/vdo AR.mp4" frameborder="0" allowfullscreen class="w-full h-full"></iframe>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Fruit Shoot</h3>
-                        <p class="text-gray-700">AR Game</p>
-                    </div>
-                </a> -->
-
             </div>
         </div>
     </section>
 
+    <!-- 3D Models Section -->
+    <section id="3D Models" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">3D Models</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Project Card 1 -->
+                <a class="project-card" href="photos/BLENDER/house.jpg" data-lightbox="project">
+                    <img src="photos/BLENDER/house.jpg" alt="Project 1" class="zoom-img">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">House Model</h3>
+                        <p class="text-gray-300">3D Model in Blender</p>
+                    </div>
+                </a>
 
-    <!-- Projects Section -->
-<section id="3D Models" class="py-16 px-4">
-    <div class="container mx-auto">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">3D Models</h2>
-        <!-- Project Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            <!-- Project Card 1 -->
-            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/house.jpg" data-lightbox="project">
-                <img src="photos/BLENDER/house.jpg" alt="Project 1" class="w-full zoom-img">
-                
-            </a>
-            
-            <!-- Project Card 2 -->
-            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/tea kadai.png" data-lightbox="project">
-                <img src="photos/BLENDER/tea kadai.png" alt="Project 2" class="w-full zoom-img">
-                
-            </a>
+                <!-- Project Card 2 -->
+                <a class="project-card" href="photos/BLENDER/tea kadai.png" data-lightbox="project">
+                    <img src="photos/BLENDER/tea kadai.png" alt="Project 2" class="zoom-img">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Tea Kadai</h3>
+                        <p class="text-gray-300">3D Model in Blender</p>
+                    </div>
+                </a>
 
-            <!-- Project Card 3 -->
-            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/SUPERMAN.png" data-lightbox="project">
-                <img src="photos/BLENDER/SUPERMAN.png" alt="Project 3" class="w-full zoom-img">
-                
-            </a>
+                <!-- Project Card 3 -->
+                <a class="project-card" href="photos/BLENDER/SUPERMAN.png" data-lightbox="project">
+                    <img src="photos/BLENDER/SUPERMAN.png" alt="Project 3" class="zoom-img">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Superman</h3>
+                        <p class="text-gray-300">3D Model in Blender</p>
+                    </div>
+                </a>
 
-            <!-- Project Card 4 -->
-            <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/JACK SPARROW.png" data-lightbox="project">
-                <img src="photos/BLENDER/JACK SPARROW.png" alt="Project 4" class="w-full zoom-img">
-                
-            </a>
+                <!-- Project Card 4 -->
+                <a class="project-card" href="photos/BLENDER/JACK SPARROW.png" data-lightbox="project">
+                    <img src="photos/BLENDER/JACK SPARROW.png" alt="Project 4" class="zoom-img">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Jack Sparrow</h3>
+                        <p class="text-gray-300">3D Model in Blender</p>
+                    </div>
+                </a>
 
-             <!-- Project Card 5 -->
-             <a class="bg-white rounded-lg shadow-md overflow-hidden" href="photos/BLENDER/Girl.png" data-lightbox="project">
-                <img src="photos/BLENDER/Girl.png" alt="Project 4" class="w-full zoom-img">
-                
-            </a>
-
-
+                <!-- Project Card 5 -->
+                <a class="project-card" href="photos/BLENDER/Girl.png" data-lightbox="project">
+                    <img src="photos/BLENDER/Girl.png" alt="Project 5" class="zoom-img">
+                    <div class="content">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Girl Model</h3>
+                        <p class="text-gray-300">3D Model in Blender</p>
+                    </div>
+                </a>
+            </div>
         </div>
-    </div>
-</section>
-<!-- Overlay for Lightbox -->
-<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 z-50 hidden flex justify-center items-center">
-    <img id="overlay-img" class="max-h-full max-w-full" src="" alt="Overlay Image">
-</div>
-
-
-
+    </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 px-4 bg-gray-100">
+    <section id="about" class="py-16 px-4">
         <div class="container mx-auto">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">About Me</h2>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">About Me</h2>
             <div class="flex flex-col items-center">
-                <img src="photos/pic mp.jpg" alt="Your Photo" class="rounded-full w-32 h-32 md:w-48 md:h-48 zoom-img mb-4">
-
-                
-                <p class="text-lg sm:text-xl md:text-2xl mb-4">Hello! I’m <strong>Mohana Priyan . K</strong>, a passionate game developer and designer with a love for creating immersive and engaging experiences. My journey into game development began with a fascination for the intricate mechanics and storytelling found in video games, which eventually led me to pursue a career in this dynamic field.
-                </p>
-    
-                <p class="text-lg sm:text-xl md:text-2xl">My expertise lies in using Unity for game development, with proficiency in C# for scripting and Blender for 3D modeling and animation. Although I am relatively new to the industry, my dedication and continuous learning have enabled me to work on a variety of projects, each helping me to develop and refine my skills.
-                </p>
-
-
-                <!-- Download Resume Button -->
-                <a href="resume/Mohana Priyan . K.pdf" download class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Download Resume</a>
+                <!-- Profile Image with Border Animation -->
+                <div class="relative w-32 h-32 md:w-48 md:h-48 mb-8">
+                    <img src="photos/pic mp.jpg" alt="Your Photo"
+                        class="rounded-full w-full h-full object-cover border-4 border-yellow-400">
+                    <div class="absolute inset-0 rounded-full border-4 border-transparent animate-spin-slow"
+                        style="border-top-color: #ffcc00;"></div>
+                </div>
+                <!-- About Content -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl text-center">
+                    <p class="text-lg sm:text-xl md:text-2xl mb-4 dark:text-gray-200">
+                        Hello! I’m <strong>Mohana Priyan . K</strong>,  a Game Developer & Designer driven by a passion for creating immersive and engaging experiences. Specializing in Unity (C#) for gameplay development and Blender for 3D modeling & animation, I bring ideas to life with both technical precision and creative vision..
+                    </p>
+                    <p class="text-lg sm:text-xl md:text-2xl mb-4 dark:text-gray-200">
+                        Though relatively new to the industry, I thrive on learning and innovation, constantly pushing myself to explore new mechanics, design principles, and interactive storytelling. Every project I work on refines my skills, fueling my commitment to crafting games that captivate players. Let’s build worlds that inspire!
+                    </p>
+                    <a href="resume/Mohana Priyan . K.pdf" download
+                        class="mt-4 inline-block bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 dark:bg-blue-600 dark:hover:bg-blue-800">
+                        Download Resume
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -203,22 +382,25 @@
     <!-- Contact Section -->
     <section id="contact" class="py-16 px-4">
         <div class="container mx-auto">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">Contact Me</h2>
-            <p class="text-lg sm:text-xl md:text-2xl">I am eager to connect with fellow game developers, designers, and enthusiasts. Whether you’re interested in collaborating on a project, discussing industry trends, or simply sharing a love for games, feel free to reach out to me through the following channels:</p>
-            
-            <!-- Contact Icons -->
-            <div class="flex items-center space-x-8 mt-8">
-                <!-- Gmail -->
-                <a href="mailto:mohanapriyan2002@gmail.com" class="text-gray-800 hover:text-gray-600 text-4xl sm:text-5xl md:text-6xl">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">Contact Me</h2>
+            <p class="text-lg sm:text-xl md:text-2xl text-center">Feel free to reach out to me through the following
+                channels:</p>
+            <div class="flex items-center justify-center space-x-8 mt-8">
+                <a href="mailto:mohanapriyan2002@gmail.com"
+                    class="text-gray-800 hover:text-gray-600 text-4xl sm:text-5xl md:text-6xl">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <!-- WhatsApp -->
-                <a href="https://wa.me/9092346445" class="text-green-600 hover:text-green-500 text-4xl sm:text-5xl md:text-6xl">
+                <a href="https://wa.me/9092346445"
+                    class="text-green-600 hover:text-green-500 text-4xl sm:text-5xl md:text-6xl">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/iam_mohan_21" class="text-pink-600 hover:text-pink-500 text-4xl sm:text-5xl md:text-6xl">
+                <a href="https://www.instagram.com/iam_mohan_21"
+                    class="text-pink-600 hover:text-pink-500 text-4xl sm:text-5xl md:text-6xl">
                     <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/mohana-priyan-k/"
+                    class="text-blue-600 hover:text-blue-500 text-4xl sm:text-5xl md:text-6xl">
+                    <i class="fab fa-linkedin"></i>
                 </a>
             </div>
         </div>
@@ -231,8 +413,71 @@
         </div>
     </footer>
 
-    <!-- Link to external JavaScript file -->
-    <script src="scripts.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Typing Effect
+        const heroText = document.querySelector('.hero-text');
+        const text = "🎮I'm Mohan - Unity Game Developer & Designer. 🚀Building worlds, crafting experiences, and bringing ideas to life.";
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                heroText.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 50);
+            }
+        }
+
+        type();
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+
+        document.querySelectorAll('a, button, .project-card').forEach((element) => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Day/Night Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+                const isDark = body.classList.contains('dark-theme');
+                themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', isDark ? 'dark' : 'light'); // Save theme preference
+            });
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                body.classList.remove('dark-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        } else {
+            console.error('Theme toggle button not found!');
+        }
+    </script>
 </body>
 
 </html>
