@@ -11,7 +11,7 @@
     <style>
         /* Gradient Background Animation */
         body {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg, #00ff22, #cc00ff, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
         }
@@ -213,6 +213,114 @@
         .zoom-img:hover {
             transform: scale(1.1);
         }
+
+
+        /* Top Play Store Badge */
+        .playstore-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 6;
+        }
+
+        .playstore-triangle {
+            width: 22px;
+            /* mobile-like size */
+            height: 22px;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.6));
+        }
+
+
+
+
+
+
+
+        /* Top Hover Overlay */
+        .top-overlay {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: top 0.4s ease;
+            z-index: 4;
+        }
+
+        .project-card:hover .top-overlay {
+            top: 0;
+        }
+
+        .top-overlay-content {
+            text-align: center;
+            color: white;
+        }
+
+        .top-overlay-content i {
+            color: #34A853;
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+
+
+
+        /* Profile container */
+        .profile-wrapper {
+            position: relative;
+            border-radius: 50%;
+        }
+
+        /* Clean profile image */
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            background: #000;
+        }
+
+        /* OUTER glowing rotating ring ONLY */
+        .glow-ring {
+            position: absolute;
+            inset: -8px;
+            /* thickness of border */
+            border-radius: 50%;
+            background: conic-gradient(transparent 0deg,
+                    rgba(255, 204, 0, 0.15) 40deg,
+                    rgba(0, 255, 255, 0.9) 90deg,
+                    rgba(255, 204, 0, 0.15) 140deg,
+                    transparent 220deg);
+
+            /* MASK to make hole in center */
+            -webkit-mask: radial-gradient(circle,
+                    transparent 60%,
+                    black 61%);
+            mask: radial-gradient(circle,
+                    transparent 60%,
+                    black 61%);
+
+            animation: spinGlow 4s linear infinite;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Rotation */
+        @keyframes spinGlow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(-360deg);
+            }
+        }
     </style>
 </head>
 
@@ -253,19 +361,73 @@
         </div>
     </section>
 
+
+    <section id="projects" class="py-16 px-4">
+        <!-- Play Store Link -->
+        <div class="flex flex-col items-center mb-10">
+            <a href="https://play.google.com/store/apps/developer?id=Mikka+Studios&hl=en_IN" target="_blank"
+                class="transform hover:scale-105 transition duration-300">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                    alt="Get it on Google Play" class="h-20 md:h-24">
+            </a>
+
+            <!-- Text below Play Store icon -->
+            <p class="mt-2 text-lg text-white opacity-300">
+                Live Game on Google Play
+            </p>
+        </div>
+    </section>
+
+
+
+
     <!-- Projects Section -->
     <section id="projects" class="py-16 px-4">
         <div class="container mx-auto">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">Projects</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Project Card 1 -->
-                <a href="project1.html" class="project-card">
-                    <img src="photos/Superman/pose.jpg" alt="Project 1">
-                    <div class="content">
-                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">*In development</h3>
-                        <p class="text-gray-300">3D(Superman) Game</p>
+
+                <div class="project-card">
+
+                    <!-- TOP PLAY STORE LINK -->
+                    <a href="https://play.google.com/store/apps/details?id=com.mohan.supremehero&hl=en_IN"
+                        target="_blank" class="absolute inset-0 z-10" style="height:50%;"></a>
+
+                    <!-- Play Store Badge Icon -->
+                    <a href="https://play.google.com/store/apps/details?id=com.mohan.supremehero&hl=en_IN"
+                        target="_blank" class="playstore-badge">
+                        <svg class="playstore-triangle" viewBox="0 0 512 512" aria-label="Google Play">
+                            <path fill="#34A853" d="M325.3 234.3L104.6 13.7c-4.3-4.3-10.6-5.7-16.2-3.7L303.1 224.6z" />
+                            <path fill="#FBBC05"
+                                d="M47 0c-4.7 2.3-7.8 7-7.8 12.2v487.6c0 5.2 3.1 9.9 7.8 12.2l256-256z" />
+                            <path fill="#4285F4" d="M470.4 225.6L365.6 169.6l-25.8 25.8L385 256l-45.2 60.6 25.8 25.8 104.8-56
+               c5.4-2.9 8.8-8.5 8.8-14.4s-3.4-11.5-8.8-14.4z" />
+                            <path fill="#EA4335" d="M104.6 498.3L325.3 277.7L303.1 268L88.4 502
+               c5.6 2 11.9.6 16.2-3.7z" />
+                        </svg>
+                    </a>
+
+
+
+                    <!-- Top Hover Overlay -->
+                    <div class="top-overlay">
+                        <div class="top-overlay-content">
+                            <i class="fab fa-google-play"></i>
+                            <p class="text-lg font-semibold">See Game</p>
+                        </div>
                     </div>
-                </a>
+
+                    <!-- IMAGE -->
+                    <img src="photos/Superman/pose.png" alt="Project 1">
+
+                    <!-- BOTTOM PROJECT PAGE LINK -->
+                    <a href="project1.html" class="content z-20 relative">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Supreme Hero : Ultimate Rescue</h3>
+                        <p class="text-gray-300">3D game on Playstore</p>
+                    </a>
+
+                </div>
+
 
                 <!-- Project Card 2 -->
                 <a href="project2.html" class="project-card">
@@ -356,19 +518,24 @@
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">About Me</h2>
             <div class="flex flex-col items-center">
                 <!-- Profile Image with Border Animation -->
-                <div class="relative w-32 h-32 md:w-48 md:h-48 mb-8">
-                    <img src="photos/pic mp.jpg" alt="Your Photo"
-                        class="rounded-full w-full h-full object-cover border-4 border-yellow-400">
-                    <div class="absolute inset-0 rounded-full border-4 border-transparent animate-spin-slow"
-                        style="border-top-color: #ffcc00;"></div>
+                <div class="relative w-32 h-32 md:w-48 md:h-48 mb-8 profile-wrapper">
+                    <div class="glow-ring"></div>
+                    <img src="photos/pic mp.jpg" alt="Your Photo" class="profile-img">
                 </div>
+
                 <!-- About Content -->
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl text-center">
                     <p class="text-lg sm:text-xl md:text-2xl mb-4 dark:text-gray-200">
-                        Hello! I’m <strong>Mohana Priyan . K</strong>,  a Game Developer & Designer driven by a passion for creating immersive and engaging experiences. Specializing in Unity (C#) for gameplay development and Blender for 3D modeling & animation, I bring ideas to life with both technical precision and creative vision..
+                        Hello! I’m <strong>Mohana Priyan . K</strong>, a Game Developer & Designer driven by a passion
+                        for creating immersive and engaging experiences. Specializing in Unity (C#) for gameplay
+                        development and Blender for 3D modeling & animation, I bring ideas to life with both technical
+                        precision and creative vision..
                     </p>
                     <p class="text-lg sm:text-xl md:text-2xl mb-4 dark:text-gray-200">
-                        Though relatively new to the industry, I thrive on learning and innovation, constantly pushing myself to explore new mechanics, design principles, and interactive storytelling. Every project I work on refines my skills, fueling my commitment to crafting games that captivate players. Let’s build worlds that inspire!
+                        Though relatively new to the industry, I thrive on learning and innovation, constantly pushing
+                        myself to explore new mechanics, design principles, and interactive storytelling. Every project
+                        I work on refines my skills, fueling my commitment to crafting games that captivate players.
+                        Let’s build worlds that inspire!
                     </p>
                     <a href="resume/Mohana Priyan . K.pdf" download
                         class="mt-4 inline-block bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 dark:bg-blue-600 dark:hover:bg-blue-800">
@@ -409,7 +576,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 py-4 text-white text-center">
         <div class="container mx-auto">
-            &copy; 2025 MOHAN GameDev Portfolio
+            &copy; 2026 MOHAN Portfolio
         </div>
     </footer>
 
